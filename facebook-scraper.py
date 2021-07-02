@@ -161,25 +161,25 @@ def scrape():
 	txt=driver.find_elements_by_xpath("//div[contains(@class,'_5pbx userContent')]")
 	try:
 		for x in txt:
-      if(similarity_with_texts.calculate_similarity(sentence,x.text)>threshold):     
-			  post["_id"] = ObjectId() 
-			  post["page_name"] =  page_name
-			  post["page_url"] = url
-			  post["post"] = x.text
-			  InsertedResultObj = posts.insert_one(post)
+      		if(similarity_with_texts.calculate_similarity(sentence,x.text)>threshold):     
+			  	post["_id"] = ObjectId() 
+			  	post["page_name"] =  page_name
+			  	post["page_url"] = url
+			  	post["post"] = x.text
+			  	InsertedResultObj = posts.insert_one(post)
 	except:
 		pass
 
 	txt=driver.find_elements_by_xpath("//div[@class='_72vr']")
 	try:
 		for x in txt:
-      if(similarity_with_texts.calculate_similarity(sentence,x.text)>threshold):
-			  comment["_id"] = ObjectId()
-			  comment["page_name"] = page_name
-			  comment["page_url"] = url
-			  comment["commenter_id"] = a[0].get_attribute("href") #who made the comment
-			  comment["comment"] = x.text #what's in the comment
-			  InsertedResultObj = comments.insert_one(comment)
+      		if(similarity_with_texts.calculate_similarity(sentence,x.text)>threshold):
+			  	comment["_id"] = ObjectId()
+			  	comment["page_name"] = page_name
+			  	comment["page_url"] = url
+			  	comment["commenter_id"] = a[0].get_attribute("href") #who made the comment
+			  	comment["comment"] = x.text #what's in the comment
+			  	InsertedResultObj = comments.insert_one(comment)
 	except:
 		pass
 
